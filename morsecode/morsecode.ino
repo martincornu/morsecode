@@ -1,5 +1,8 @@
 #define THRESHOLD 200
 #define MESSAGE_LENGTH 7
+#define PIN_OUTPUT 13
+#define PIN_LED_GREEN 12
+#define PIN_LED_RED 11
 #define MORSE_SOLUTION "--..-.-"
 
 char morse_result[MESSAGE_LENGTH+1] = {0};  //User's result
@@ -11,11 +14,17 @@ uint16_t dotLenMin = 1000;     // Length of a dot between 1000 and 6000
 uint16_t dashLen = 6000;       // Length of  a dash between 6000 and + inf
 uint16_t spaceLen = 50000;     // Length min of "low state" before comp results
 
-bool door_open = false;
+bool door_open;
 
 void setup()
 {
   Serial.begin(9600);// Start a Serial Connection
+  door_open = false;
+  digitalWrite(PIN_OUTPUT, HIGH);
+  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(PIN_LED_GREEN, LOW);
+  digitalWrite(PIN_LED_RED, LOW);
+  Serial.println("Let's go !");
 }
 
 void loop()
@@ -27,8 +36,8 @@ void loop()
     {
       ctrHigh++;                  //Then count time of active light
       ctrLow = 0;
-      digitalWrite(13, LOW);
-      digitalWrite(12, LOW);
+      digitalWrite(PIN_LED_GREEN, LOW);
+      digitalWrite(PIN_LED_RED, LOW);
     }
     else                          //If no light
     {
@@ -53,13 +62,17 @@ void loop()
           {
               if(strcmp(morse_result, MORSE_SOLUTION) == 0)     //Check if our result match the solution
               {
-                digitalWrite(13, HIGH);                         //If yes, blink green led and set the bool door_open to true
+                digitalWrite(PIN_OUTPUT, LOW);
+                digitalWrite(LED_BUILTIN, LOW);                 //If yes, deactivate electro magnet and set the bool door_open to true
+                digitalWrite(PIN_LED_GREEN, HIGH);
+                digitalWrite(PIN_LED_RED, LOW);
                 door_open = true;
                 Serial.println("Good result !! OPEN THE DOOR");
               }
-              else                                              //If not, blink red led
+              else                                              //If not
               {
-                digitalWrite(12, HIGH);
+                digitalWrite(PIN_LED_RED, HIGH);
+                digitalWrite(PIN_LED_GREEN, LOW);
               }
               indice=0;                                         //Both cases, reset variables
               raz(morse_result);
