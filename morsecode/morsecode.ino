@@ -11,7 +11,7 @@ uint16_t val = 0;              // A Variable to Store the Light Value from the L
 uint16_t ctrHigh = 0;          // Count time of active light
 uint16_t ctrLow = 0;           // Count time of no light
 uint16_t dotLenMin = 1000;     // Length of a dot between 1000 and 6000
-uint16_t dashLen = 6000;       // Length of  a dash between 6000 and + inf
+uint16_t dashLen = 8500;       // Length of  a dash between 6000 and + inf
 uint16_t spaceLen = 50000;     // Length min of "low state" before comp results
 
 bool door_open;
@@ -42,6 +42,12 @@ void loop()
     else                          //If no light
     {
       ctrLow++;                   //Count time of no light
+
+//      "if" used to mesure the time of "button pressed by the user"       
+//      if (ctrHigh >= dotLenMin){
+//        Serial.print("ctrHigh = "); Serial.println(ctrHigh);
+//      }
+
       if ((ctrHigh >= dotLenMin) && (ctrHigh < dashLen)) {      //Check if "time of active light" match a dot
         Serial.print(".");
         morse_result[indice]='.';                                  //If yes, add the dot to the "result" string
