@@ -8,10 +8,10 @@
 char morse_result[MESSAGE_LENGTH+1] = {0};  //User's result
 uint8_t indice = 0;            //Indice to insert char in more_result
 uint16_t val = 0;              // A Variable to Store the Light Value from the LDR
-uint16_t ctrHigh = 0;          // Count time of active light
+uint16_t ctrHigh = 0;          // Count time of active light 
 uint16_t ctrLow = 0;           // Count time of no light
-uint16_t dotLenMin = 1000;     // Length of a dot between 1000 and 6000
-uint16_t dashLen = 8500;       // Length of  a dash between 6000 and + inf
+uint16_t dotLenMin = 1000;     // Length of a dot between 1000 and 8500
+uint16_t dashLen = 8500;       // Length of  a dash between 8500 and + inf
 uint16_t spaceLen = 50000;     // Length min of "low state" before comp results
 
 bool door_open;

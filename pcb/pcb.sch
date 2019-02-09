@@ -371,8 +371,6 @@ F 3 "~" H 6500 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6300 2300 6300 3300
-Wire Wire Line
 	2750 2550 2750 3400
 Wire Wire Line
 	3850 2550 3850 3400
@@ -394,8 +392,6 @@ Wire Wire Line
 Connection ~ 5650 2200
 Wire Wire Line
 	5650 2200 6300 2200
-Wire Wire Line
-	5650 3000 5650 3400
 $Comp
 L power:GND #PWR0101
 U 1 1 5C2A1E28
@@ -427,17 +423,6 @@ F 1 "GND" H 5050 3250 50  0000 C CNN
 F 2 "" H 5050 3400 50  0000 C CNN
 F 3 "" H 5050 3400 50  0000 C CNN
 	1    5050 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0104
-U 1 1 5C2A2262
-P 5650 3400
-F 0 "#PWR0104" H 5650 3150 50  0001 C CNN
-F 1 "GND" H 5650 3250 50  0000 C CNN
-F 2 "" H 5650 3400 50  0000 C CNN
-F 3 "" H 5650 3400 50  0000 C CNN
-	1    5650 3400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -574,4 +559,11 @@ NoConn ~ 10300 1500
 NoConn ~ 10550 1300
 Text Label 4300 4800 0    50   ~ 0
 A4(SDA)
+Wire Wire Line
+	5650 3000 6300 3000
+Wire Wire Line
+	6300 2300 6300 3000
+Connection ~ 6300 3000
+Wire Wire Line
+	6300 3000 6300 3300
 $EndSCHEMATC
